@@ -6,4 +6,7 @@ public class Person {
 
     //~Public  Methods ........................................................
 
+    public void name() {
+        System.out.println("Hello");
+    }
 }
