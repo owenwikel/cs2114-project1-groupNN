@@ -207,4 +207,23 @@ public class Person {
             failedList);
     }
 
+    /**
+     * Added to be used in test cases.
+     * returns the weather.
+     * 
+     * @return the weather.
+     */
+    public Weather getWeather() {
+        return this.weather;
+    }
+    
+    /**
+     * Added to be used in test cases.
+     * returns list of tops.
+     * 
+     * @return tops list.
+     */
+    public ArrayList<Top> getTopsList() {
+        return this.topsList;
+    }
 }
