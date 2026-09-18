@@ -85,23 +85,23 @@ public class Person {
         System.out.println("Hello " + this.getName() + " welcome to the Geared"
             + " Garment Generator!"
             + " I will suggest an outfit based on todays weather, "
-            + " and what you have planned.");
+            + " and what you have planned. ");
         while (-70 > temp || temp > 120) {
-            System.out.print("What temperature is it in your location?");
+            System.out.print("What temperature is it in your location? ");
             try {
                 temp = scanner.nextInt();
                 scanner.nextLine(); //Throws away leftover new line
                 if (-70 > temp || temp > 120) {
-                    System.out.println("Please enter a valid temperature.");
+                    System.out.println("Please enter a valid temperature. ");
                 }
             }
             catch (InputMismatchException e) {
-                System.out.println("Please enter a valid temperature.");
+                System.out.println("Please enter a valid temperature. ");
                 scanner.nextLine(); //Throws away bad input
             }
         }
         while (!validPrecip) {
-            System.out.print("Is there precipitation?");
+            System.out.print("Is there precipitation? ");
             isTherePrecip = scanner.nextLine();
             if (isTherePrecip.toUpperCase().equals("YES")) {
                 validPrecip = true;
@@ -119,18 +119,18 @@ public class Person {
                 isPrecip = false;
             }
             else {
-                System.out.println("Please enter yes or no.");
+                System.out.println("Please enter yes or no. ");
             }
         }
         while (!validFormality) {
-            System.out.print("Do you have any formal events today?");
+            System.out.print("Do you have any formal events today? ");
             formality = scanner.nextLine();
             if (formality.toUpperCase().equals("CASUAL") ||
                 formality.toUpperCase().equals("FORMAL")) {
                 validFormality = true;   
             }
             else {
-                System.out.println("Please enter a valid formality type.");
+                System.out.println("Please enter a valid formality type. ");
             }
         }
         weather = new Weather(temp, isPrecip, precipType);
@@ -148,7 +148,7 @@ public class Person {
         boolean validCSV = false;
         Scanner scanner = new Scanner(System.in);
         while(!validCSV) {
-            System.out.print("Paste your CSV link containing your wardrobe.");
+            System.out.print("Paste your CSV link containing your wardrobe. ");
             try {
             file = scanner.nextLine();
             File csvFile = new File(file);
@@ -157,7 +157,7 @@ public class Person {
             validCSV = true;
             }
             catch(FileNotFoundException e) {
-                System.out.print("Please enter a valid CSV link");
+                System.out.print("Please enter a valid CSV link ");
             }
         }
         return file;
@@ -167,8 +167,11 @@ public class Person {
      * Reads the wardrobe CSV file and adds each row's item to the matching 
      * list based on category. If a row has an unrecognized category it is
      * skipped and it's name is collected in a failedList.
+     * 
+     * @throws FileNotFoundException should not occur if setCSV() was called
+     * first.
      */
-    public void readCSV() {
+    public void readCSV() throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(file));
         scanner.nextLine(); //Skip headers
         while (scanner.hasNextLine()) {
@@ -225,5 +228,15 @@ public class Person {
      */
     public ArrayList<Top> getTopsList() {
         return this.topsList;
+    }
+    
+    /**
+     * Added to be used in test cases.
+     * returns the desired formality.
+     * 
+     * @return the desired formality.
+     */
+    public String getDesiredFormality() {
+        return this.desiredFormality;
     }
 }
