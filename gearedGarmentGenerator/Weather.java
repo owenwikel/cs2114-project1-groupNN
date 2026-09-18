@@ -15,4 +15,12 @@ public Weather(int temp, boolean isPrecip, String precipType) {
 public int getTemp() {
     return this.temp;
 }
+
+public boolean isPrecip() {
+    return this.isPrecip;
+}
+
+public String getPrecipType() {
+    return this.precipType;
+}
 }

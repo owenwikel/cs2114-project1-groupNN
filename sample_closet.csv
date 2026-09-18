@@ -1,0 +1,14 @@
+category,warmth,formality,description,jacketType
+top,FALSE,casual,gray cotton t-shirt,
+top,TRUE,casual,cream long sleeve,
+top,FALSE,formal,white button up,
+bottom,FALSE,casual,blue denim jeans,
+bottom,TRUE,casual,black sweatpants,
+bottom,FALSE,formal,black dress pants,
+shoes,FALSE,casual,white sneakers,
+shoes,TRUE,casual,brown boots,
+shoes,FALSE,formal,black dress shoes,
+jacket,TRUE,casual,navy winter jacket,winter
+jacket,FALSE,casual,yellow rain jacket,rain
+full,FALSE,formal,black suit,
+hat,FALSE,casual,red baseball cap,
