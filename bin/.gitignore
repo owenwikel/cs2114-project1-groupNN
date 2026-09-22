@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-/gearedGarmentGenerator/
-=======
 # Compiled class file
 *.class
 
@@ -27,4 +24,3 @@ hs_err_pid*
 replay_pid*
 .DS_Store
 .project
->>>>>>> Stashed changes
