@@ -57,3 +57,5 @@ Each class has a JUnit test class. Console input is simulated in tests so they r
 
 ## Not Implemented (Stretch Goals)
 Photo uploads, weather API, tracking dirty clothes, avoiding repeat outfits by date, planning future events, and color coordination.
+
+![System Diagram](system_diagram.png)
