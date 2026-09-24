@@ -1,0 +1,94 @@
+category,warmth,formality,description,jacketType
+top,true,casual,gray wool sweater
+top,true,casual,navy fleece pullover
+top,true,casual,green flannel shirt
+top,true,casual,black thermal long-sleeve
+top,true,formal,charcoal cashmere sweater
+top,true,formal,white oxford shirt with undershirt
+top,true,formal,black turtleneck
+top,true,formal,cream cable-knit cardigan
+top,false,casual,gray cotton t-shirt
+top,false,casual,white tank top
+top,false,casual,blue graphic tee
+top,false,casual,red polo shirt
+top,false,formal,white linen button-down
+top,false,formal,light blue dress shirt
+top,false,formal,silk blouse
+top,false,formal,pink short-sleeve dress shirt
+bottom,true,casual,blue denim jeans
+bottom,true,casual,gray sweatpants
+bottom,true,casual,brown corduroy pants
+bottom,true,casual,black fleece joggers
+bottom,true,formal,charcoal wool trousers
+bottom,true,formal,black dress pants
+bottom,true,formal,navy flannel slacks
+bottom,true,formal,gray wool skirt
+bottom,false,casual,khaki shorts
+bottom,false,casual,denim shorts
+bottom,false,casual,black athletic shorts
+bottom,false,casual,floral skirt
+bottom,false,formal,tan linen trousers
+bottom,false,formal,light gray chinos
+bottom,false,formal,white pleated skirt
+bottom,false,formal,navy cotton slacks
+shoes,true,casual,brown winter boots
+shoes,true,casual,black snow boots
+shoes,true,casual,tan work boots
+shoes,true,casual,gray lined sneakers
+shoes,true,formal,black leather dress boots
+shoes,true,formal,brown chelsea boots
+shoes,true,formal,black lined oxfords
+shoes,true,formal,burgundy leather boots
+shoes,false,casual,white sneakers
+shoes,false,casual,black flip flops
+shoes,false,casual,canvas slip-ons
+shoes,false,casual,blue running shoes
+shoes,false,formal,brown loafers
+shoes,false,formal,black dress shoes
+shoes,false,formal,tan suede oxfords
+shoes,false,formal,nude heels
+full,true,casual,gray fleece jumpsuit
+full,true,casual,navy sweater dress
+full,true,casual,green knit dress
+full,true,casual,black insulated overalls
+full,true,formal,charcoal wool suit
+full,true,formal,black long-sleeve gown
+full,true,formal,navy three-piece suit
+full,true,formal,burgundy velvet dress
+full,false,casual,yellow sundress
+full,false,casual,denim overalls
+full,false,casual,striped romper
+full,false,casual,white cotton jumpsuit
+full,false,formal,light gray linen suit
+full,false,formal,blue cocktail dress
+full,false,formal,tan summer suit
+full,false,formal,white midi dress
+jacket,true,casual,yellow lined rain jacket,rain jacket
+jacket,true,casual,green insulated rain parka,rain jacket
+jacket,true,casual,navy fleece-lined raincoat,rain jacket
+jacket,true,casual,black lined windbreaker,rain jacket
+jacket,true,formal,tan lined trench coat,rain jacket
+jacket,true,formal,black wool-lined trench,rain jacket
+jacket,true,formal,navy insulated mac coat,rain jacket
+jacket,true,formal,gray lined raincoat,rain jacket
+jacket,false,casual,red rain shell,rain jacket
+jacket,false,casual,clear plastic poncho,rain jacket
+jacket,false,casual,blue packable rain jacket,rain jacket
+jacket,false,casual,orange light rain jacket,rain jacket
+jacket,false,formal,beige light trench coat,rain jacket
+jacket,false,formal,black unlined raincoat,rain jacket
+jacket,false,formal,navy light mac coat,rain jacket
+jacket,false,formal,olive light trench,rain jacket
+jacket,true,casual,black puffer coat,winter jacket
+jacket,true,casual,green parka,winter jacket
+jacket,true,casual,gray down jacket,winter jacket
+jacket,true,casual,red ski jacket,winter jacket
+jacket,true,formal,charcoal wool overcoat,winter jacket
+jacket,true,formal,camel peacoat,winter jacket
+jacket,true,formal,black wool topcoat,winter jacket
+jacket,true,formal,navy cashmere coat,winter jacket
+hat,true,casual,black beanie
+scarf,true,casual,red knit scarf
+gloves,true,formal,leather gloves
+sunglasses,false,casual,aviator sunglasses
+belt,false,formal,brown leather belt

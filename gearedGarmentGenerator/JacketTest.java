@@ -35,4 +35,24 @@ public class JacketTest extends TestCase {
         jacket.setJacketType("rain jacket");
         assertEquals("rain jacket", jacket.getJacketType());
     }
+    
+    /**
+     * Tests meetsCriteria method.
+     */
+    public void testMeetsCriteria() {
+        Weather rain = new Weather(85, true, "rain");
+        Weather snow = new Weather(20, true, "snow");
+        Weather dry = new Weather(20, false, "none");
+        Jacket lightRain = new Jacket(false, "casual", "shell", "rain jacket");
+        Jacket lightWinter = new Jacket(false, "casual", "coat", "winter jacket");
+        Jacket warmRain = new Jacket(true, "casual", "raincoat", "rain jacket");
+        Jacket warmWinter = new Jacket(true, "casual", "puffer", "winter jacket");
+        assertFalse(warmWinter.meetsCriteria(snow, "formal"));
+        assertTrue(lightRain.meetsCriteria(rain, "casual"));
+        assertFalse(lightWinter.meetsCriteria(rain, "casual"));
+        assertTrue(warmWinter.meetsCriteria(snow, "casual"));
+        assertFalse(warmRain.meetsCriteria(snow, "casual"));
+        assertTrue(warmWinter.meetsCriteria(dry, "casual"));
+        assertFalse(warmRain.meetsCriteria(dry, "casual"));
+    }
 }

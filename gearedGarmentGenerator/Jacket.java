@@ -43,4 +43,27 @@ public class Jacket extends Clothes {
     public void setJacketType (String jacketType) {
         this.jacketType = jacketType;
     }
+    
+    /**
+     * Checks if this jacket matches the weather and formality.
+     * Rain requires a rain jacket, snow requires a winter jacket,
+     * and dry days only allow a winter jacket.
+     *
+     * @param weather the day's weather
+     * @param neededFormality formality of the day
+     * @return true if jacket fits conditions
+     */
+    @Override
+    public boolean meetsCriteria(Weather weather, String neededFormality) {
+        if (!super.meetsCriteria(weather, neededFormality)) {
+            return false;
+        }
+        if (weather.isPrecip()) {
+            if (weather.getPrecipType().equals("rain")) {
+                return "rain jacket".equals(jacketType);
+            }
+            return "winter jacket".equals(jacketType);
+        }
+        return "winter jacket".equals(jacketType);
+    }
 }
