@@ -68,7 +68,7 @@ public class Outfit
     /**
      * Gets the bottom item
      * 
-     * @return bottm
+     * @return bottom
      */
     public Bottom getBottom() {
         return bottom;
