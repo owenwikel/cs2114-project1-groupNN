@@ -3,7 +3,7 @@ Customizable outfit curator based on your own wardrobe.
 
 # Geared Garment Generator
 
-**CS 2114, Fall 2026 — Cassidy McCahill, Owen Wikel, Sydney Yang**
+**CS 2114, Fall 2026 - Cassidy McCahill, Owen Wikel, Sydney Yang**
 
 Geared Garment Generator reads your wardrobe from a CSV file and suggests up to three outfits that match the day's temperature, precipitation, and formality(less than three if you don't have enought clothes for a particular situation).
 
@@ -32,10 +32,10 @@ category,warmth,formality,description,jacketType
 Rows with an unrecognized category are skipped and listed after the file is read.
 
 ## Included Closet Files
-- `demo_closet.csv` — covers every weather and formality combination, plus invalid items
-- `sample_closet.csv` — small closet used in tests
-- `big_closet.csv` — larger test closet
-- `empty_closet.csv` — tests the "not enough clothes" case
+- `demo_closet.csv` - covers every weather and formality combination, plus invalid items
+- `sample_closet.csv` - small closet used in tests
+- `big_closet.csv` - larger test closet
+- `empty_closet.csv` - tests the "not enough clothes" case
 
 ## Classes
 - **Main:** starts the program
