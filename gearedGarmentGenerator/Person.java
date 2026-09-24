@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
  * Represents the user. Holds the user's name, their wardrobe grouped by type,
  * the weather and formality they have provided, and the CSV file their
  * wardrobe was read from.
+ * 
+ *  @author Owen Wikel
+ *  @version Sep 21, 2026
  */
 public class Person {
     //~ Fields ................................................................
@@ -19,6 +22,7 @@ public class Person {
    private String desiredFormality;
    private String file;
    private ArrayList<String> failedList;
+   private Scanner scanner;
  
 
     //~ Constructors ..........................................................
@@ -35,7 +39,40 @@ public class Person {
         failedList = new ArrayList<String>();
     }
     //~Public  Methods ........................................................
-   /**
+    /**
+     * Runs the full program. collects weather/formality, reads wardrobe csv
+     * builds outfits, and displays the results.
+     */
+    public void runProgram() {
+        this.welcomeUser();
+        this.setCSV();
+        try {
+            this.readCSV();
+        } catch (FileNotFoundException e) {
+            //Not directly testable. setCSV() already
+            // confirms the file exists before readCSV() is called, so this
+            // branch would only go if the file were deleted between
+            // those two calls.
+            System.out.println("File could not be read,"
+                + " Please check and try again.");
+            return;
+        }
+        ArrayList<Outfit> outfits = this.createOutfits(this.weather,
+            this.desiredFormality);
+
+        if (outfits.isEmpty()) {
+            System.out.println("Add more items. Not enough"
+                + " clothes for conditions.");
+        } else {
+            for (int i = 0; i < outfits.size(); i++) {
+                System.out.println("Outfit " + (i + 1) + ":");
+                System.out.println(outfits.get(i).displayOutfit());
+            }
+        }
+   }
+    
+    
+    /**
     * Returns this persons name.
     * 
     * @return the users name.
@@ -61,8 +98,7 @@ public class Person {
     public static Person meetUser() {
         Person user = new Person();
         System.out.print("Hello what's your name?");
-        Scanner scanner = new Scanner(System.in);
-        user.setName(scanner.nextLine());
+        user.setName(user.getScanner().nextLine());
         return user;
     }
     
@@ -81,7 +117,6 @@ public class Person {
         boolean validPrecip = false;
         boolean validFormality = false;
         
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Hello " + this.getName() + " welcome to the Geared"
             + " Garment Generator!"
             + " I will suggest an outfit based on todays weather, "
@@ -89,20 +124,20 @@ public class Person {
         while (-70 > temp || temp > 120) {
             System.out.print("What temperature is it in your location? ");
             try {
-                temp = scanner.nextInt();
-                scanner.nextLine(); //Throws away leftover new line
+                temp = getScanner().nextInt();
+                getScanner().nextLine(); //Throws away leftover new line
                 if (-70 > temp || temp > 120) {
                     System.out.println("Please enter a valid temperature. ");
                 }
             }
             catch (InputMismatchException e) {
                 System.out.println("Please enter a valid temperature. ");
-                scanner.nextLine(); //Throws away bad input
+                getScanner().nextLine(); //Throws away bad input
             }
         }
         while (!validPrecip) {
             System.out.print("Is there precipitation? ");
-            isTherePrecip = scanner.nextLine();
+            isTherePrecip = getScanner().nextLine();
             if (isTherePrecip.toUpperCase().equals("YES")) {
                 validPrecip = true;
                 isPrecip = true;
@@ -123,8 +158,8 @@ public class Person {
             }
         }
         while (!validFormality) {
-            System.out.print("Do you have any formal events today? ");
-            formality = scanner.nextLine();
+            System.out.print("What is the formality of your day? ");
+            formality = getScanner().nextLine();
             if (formality.toUpperCase().equals("CASUAL") ||
                 formality.toUpperCase().equals("FORMAL")) {
                 validFormality = true;   
@@ -146,11 +181,10 @@ public class Person {
      */
     public String setCSV(){
         boolean validCSV = false;
-        Scanner scanner = new Scanner(System.in);
         while(!validCSV) {
             System.out.print("Paste your CSV link containing your wardrobe. ");
             try {
-            file = scanner.nextLine();
+            file = getScanner().nextLine();
             File csvFile = new File(file);
             Scanner fileScanner = new Scanner(csvFile);
             fileScanner.close();
@@ -239,4 +273,132 @@ public class Person {
     public String getDesiredFormality() {
         return this.desiredFormality;
     }
+    
+    /**
+     * Creates the users outfits to choose from
+     * based on daily criteria.
+     * 
+     * @param weather the weather
+     * @param desiredFormality the formality of the day.
+     * @return outfits.
+     */
+    public ArrayList<Outfit> createOutfits(Weather weather, String desiredFormality) {
+        ArrayList<Outfit> outfits = new ArrayList<Outfit>();
+        //LLM recommended using this object type for implementation
+        Random random = new Random();
+        ArrayList<Top> matchingTops = new ArrayList<Top>();
+        for (Top t : topsList) {
+            if (t.meetsCriteria(weather, desiredFormality)) matchingTops.add(t);
+        }
+        ArrayList<Bottom> matchingBottoms = new ArrayList<Bottom>();
+        for (Bottom b : bottomsList) {
+            if (b.meetsCriteria(weather, desiredFormality)) matchingBottoms.add(b);
+        }
+        ArrayList<Shoes> matchingShoes = new ArrayList<Shoes>();
+        for (Shoes s : shoesList) {
+            if (s.meetsCriteria(weather, desiredFormality)) matchingShoes.add(s);
+        }
+        ArrayList<Jacket> matchingJackets = new ArrayList<Jacket>();
+        for (Jacket j : jacketsList) {
+            if (j.meetsCriteria(weather, desiredFormality)) matchingJackets.add(j);
+        }
+        ArrayList<Full> matchingFulls = new ArrayList<Full>();
+        for (Full f : fullList) {
+            if (f.meetsCriteria(weather, desiredFormality)) matchingFulls.add(f);
+        }
+        boolean hasTopBottom = !matchingTops.isEmpty() && !matchingBottoms.isEmpty();
+        boolean hasFull = !matchingFulls.isEmpty();
+        if (matchingShoes.isEmpty() || (!hasTopBottom && !hasFull)) {
+            //checking if possible or not to make outfit
+            return outfits;
+        }
+        int maxAttempts = 50;
+        int attempts = 0;
+        while (outfits.size() < 3 && attempts < maxAttempts) {
+            attempts++;
+            Outfit outfit = new Outfit();
+            // From LLM (next boolean returns either true or false 50/50)
+            boolean useFull = hasFull && (!hasTopBottom || random.nextBoolean());
+            Top chosenTop = null;
+            Bottom chosenBottom = null;
+            Full chosenFull = null;
+            Jacket chosenJacket = null;
+            if (useFull) {
+                //random.netInt will return random int from 0 to the bound
+                chosenFull = matchingFulls.get(random.nextInt(matchingFulls.size()));
+                outfit.setFull(chosenFull);
+            } else {
+                chosenTop = matchingTops.get(random.nextInt(matchingTops.size()));
+                chosenBottom = matchingBottoms.get(random.nextInt(matchingBottoms.size()));
+                outfit.setTop(chosenTop);
+                outfit.setBottom(chosenBottom);
+            }
+            //Shoes defined here because they are never optional
+            // you could have an outfit with no Top, Bottom, full, or jacket
+            // but you must have shoes.
+            Shoes chosenShoes = matchingShoes.get(random.nextInt(matchingShoes.size()));
+            outfit.setShoes(chosenShoes);
+            if (!matchingJackets.isEmpty()) {
+                chosenJacket = matchingJackets.get(random.nextInt(matchingJackets.size()));
+                outfit.setJacket(chosenJacket);
+            }
+            boolean isDuplicate = false;
+            // making sure no repeat outfits.
+            for (Outfit existing : outfits) {
+                if (existing.getFull() == chosenFull
+                    && existing.getTop() == chosenTop
+                    && existing.getBottom() == chosenBottom
+                    && existing.getShoes() == chosenShoes
+                    && existing.getJacket() == chosenJacket) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate) {
+                outfits.add(outfit);
+            }
+        }
+        return outfits;
+    }
+    
+    /**
+     * Added for testing
+     */
+    public ArrayList<Bottom> getBottomsList() {
+        return this.bottomsList;
+    }
+
+    /**
+     * Added for testing.
+     */
+    public ArrayList<Shoes> getShoesList() {
+        return this.shoesList;
+    }
+    
+    /**
+     * Added for testing.
+     */
+    public ArrayList<Jacket> getJacketsList() {
+        return this.jacketsList;
+    }
+
+    /**
+     * Added for testing.
+     */
+    public ArrayList<Full> getFullList() {
+        return this.fullList;
+    }
+    /**
+     * Returns the shared scanner.
+     * 
+     * @return shared scanner.
+     */
+    private Scanner getScanner() {
+        if (scanner == null) {
+            scanner = new Scanner(System.in);
+        }
+        return scanner;
+    }
+    
+
 }

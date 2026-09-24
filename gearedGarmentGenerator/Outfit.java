@@ -41,7 +41,12 @@ public class Outfit
             this.bottom = bottom;
             this.full = null;
         }
-        
+    }
+    
+    /**
+     * Empty constructor for createOufits method in person.
+     */
+    public Outfit() {
     }
     //~Public  Methods ........................................................
     /**
@@ -136,21 +141,22 @@ public class Outfit
     public String displayOutfit() {
         StringBuilder builder = new StringBuilder();
         if (full != null) {
-            builder.append("Full: ").append(full.Description().append("\n"));
+            builder.append("Full: ").append(full.getDescription()).append("\n");
         }
         else {
             if(top != null) {
-                builder.append("Top: ").append(top.Description().append("\n"));
+                builder.append("Top: ").append(top.getDescription()).append("\n");
             }
             if(bottom != null) {
-                builder.append("Bottom: ").append(bottom.Description().append("\n"));
+                builder.append("Bottom: ").append(bottom.getDescription()).append("\n");
             }
         }
         if (jacket != null) {
-            builder.append("Jacket: ").append(jacket.Description().append("\n"));
+            builder.append("Jacket: ").append(jacket.getDescription()).append("\n");
         }
         if (shoes != null) {
-            builder.append("Shoes: ").append(shoes.Description().append("\n"));
+            builder.append("Shoes: ").append(shoes.getDescription()).append("\n");
+
         }
         return builder.toString();
     }
