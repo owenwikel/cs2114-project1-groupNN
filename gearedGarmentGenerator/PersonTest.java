@@ -8,6 +8,9 @@ import java.util.ArrayList;
 //would have made the test cases unreasonably long.
 /**
  * Tests for person.
+ * 
+ * @author Owen Wikel
+ * @version Sep 21, 2026
  */
 public class PersonTest extends TestCase {
     //~ Fields ................................................................
@@ -365,7 +368,7 @@ public class PersonTest extends TestCase {
             "winter jacket")); 
         Weather coldWeather = new Weather(25, true, "snow");
         ArrayList<Outfit> outfits = person.createOutfits(coldWeather, "casual");
-        assertTrue(outfits.size() <= 1);
+        assertEquals(1, outfits.size());
     }
     
     /**
@@ -375,8 +378,42 @@ public class PersonTest extends TestCase {
         System.setIn(new ByteArrayInputStream(
             "20\nno\ncasual\nempty_closet.csv\n".getBytes()));
         person.runProgram();
-        assertTrue(person.getTopsList().isEmpty()
-            || person.createOutfits(person.getWeather(),
-                person.getDesiredFormality()).isEmpty());
+        assertTrue(person.getTopsList().isEmpty());
+    }
+    
+    /**
+     * Tests createOufits correctly identifies nonduplicates when
+     * bottom and jacket are different.
+     */
+    public void testCreateOutfitsDuplicateCheckPartialMismatch() {
+        person.getTopsList().add(new Top(true, "casual", "Warm long-sleeve"));
+        person.getBottomsList().add(new Bottom(true, "casual", "Sweatpants"));
+        person.getBottomsList().add(new Bottom(true, "casual", "Jeans"));
+        person.getShoesList().add(new Shoes(true, "casual", "Winter boots"));
+        person.getJacketsList().add(new Jacket(true, "casual", "Winter coat", "winter jacket"));
+        person.getJacketsList().add(new Jacket(true, "casual", "Puffer coat", "winter jacket"));
+
+        Weather coldWeather = new Weather(25, true, "snow");
+        ArrayList<Outfit> outfits = person.createOutfits(coldWeather, "casual");
+
+        assertEquals(3, outfits.size());
+    }
+    
+    /**
+     * Tests createOufits correctly identifies nonduplicates when
+     * top, bottom, and jacket are different between two outfits.
+     */
+    public void testCreateOutfitsDuplicateCheckMismatchPart() {
+        person.getTopsList().add(new Top(true, "casual", "Warm long-sleeve"));
+        person.getTopsList().add(new Top(true, "casual", "Fleece pullover"));
+        person.getBottomsList().add(new Bottom(true, "casual", "Sweatpants"));
+        person.getBottomsList().add(new Bottom(true, "casual", "Jeans"));
+        person.getShoesList().add(new Shoes(true, "casual", "Winter boots"));
+        person.getJacketsList().add(new Jacket(true, "casual", "Winter coat", "winter jacket"));
+        person.getJacketsList().add(new Jacket(true, "casual", "Puffer coat", "winter jacket"));
+
+        Weather coldWeather = new Weather(25, true, "snow");
+        ArrayList<Outfit> outfits = person.createOutfits(coldWeather, "casual");
+        assertEquals(3, outfits.size());
     }
 }
