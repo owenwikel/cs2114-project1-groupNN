@@ -1,0 +1,53 @@
+category,warmth,formality,description,jacketType
+top,FALSE,casual,gray cotton t-shirt,
+top,FALSE,casual,white cotton t-shirt,
+top,FALSE,casual,navy cotton t-shirt,
+top,FALSE,casual,green graphic tee,
+top,FALSE,casual,black tank top,
+top,TRUE,casual,cream long sleeve,
+top,TRUE,casual,blue flannel shirt,
+top,TRUE,casual,gray hoodie,
+top,TRUE,casual,red fleece pullover,
+top,TRUE,casual,brown sweater,
+top,FALSE,formal,white button up,
+top,FALSE,formal,light blue button up,
+top,FALSE,formal,black blouse,
+top,TRUE,formal,charcoal turtleneck,
+top,TRUE,formal,navy cardigan,
+bottom,FALSE,casual,blue denim jeans,
+bottom,FALSE,casual,black denim jeans,
+bottom,FALSE,casual,khaki shorts,
+bottom,FALSE,casual,gray shorts,
+bottom,TRUE,casual,black sweatpants,
+bottom,TRUE,casual,gray joggers,
+bottom,TRUE,casual,navy fleece pants,
+bottom,FALSE,formal,black dress pants,
+bottom,FALSE,formal,gray dress pants,
+bottom,FALSE,formal,navy dress pants,
+bottom,TRUE,formal,charcoal wool trousers,
+shoes,FALSE,casual,white sneakers,
+shoes,FALSE,casual,black sneakers,
+shoes,FALSE,casual,tan sandals,
+shoes,FALSE,casual,canvas slip-ons,
+shoes,TRUE,casual,brown boots,
+shoes,TRUE,casual,black boots,
+shoes,TRUE,casual,winter snow boots,
+shoes,FALSE,formal,black dress shoes,
+shoes,FALSE,formal,brown dress shoes,
+shoes,TRUE,formal,black leather boots,
+jacket,TRUE,casual,navy winter jacket,winter
+jacket,TRUE,casual,black winter jacket,winter
+jacket,TRUE,casual,gray puffer jacket,winter
+jacket,FALSE,casual,yellow rain jacket,rain
+jacket,FALSE,casual,blue rain jacket,rain
+jacket,FALSE,casual,green windbreaker,rain
+jacket,TRUE,formal,black wool coat,winter
+jacket,FALSE,formal,tan trench coat,rain
+full,FALSE,formal,black suit,
+full,FALSE,formal,navy suit,
+full,FALSE,formal,gray suit,
+full,TRUE,formal,black wool suit,
+full,FALSE,casual,blue sundress,
+full,FALSE,casual,floral sundress,
+full,TRUE,casual,knit sweater dress,
+hat,FALSE,casual,red baseball cap,

@@ -41,7 +41,7 @@ public class Person {
     //~Public  Methods ........................................................
     /**
      * Runs the full program. collects weather/formality, reads wardrobe csv
-     * , builds outfits, and displays the results.
+     * builds outfits, and displays the results.
      */
     public void runProgram() {
         this.welcomeUser();
@@ -158,7 +158,7 @@ public class Person {
             }
         }
         while (!validFormality) {
-            System.out.print("Do you have any formal events today? ");
+            System.out.print("What is the formality of your day? ");
             formality = getScanner().nextLine();
             if (formality.toUpperCase().equals("CASUAL") ||
                 formality.toUpperCase().equals("FORMAL")) {
