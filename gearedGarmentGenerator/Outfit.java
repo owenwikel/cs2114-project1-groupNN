@@ -68,7 +68,7 @@ public class Outfit
     /**
      * Gets the bottom item
      * 
-     * @return bottom
+     * @return bottm
      */
     public Bottom getBottom() {
         return bottom;
@@ -156,6 +156,7 @@ public class Outfit
         }
         if (shoes != null) {
             builder.append("Shoes: ").append(shoes.getDescription()).append("\n");
+
         }
         return builder.toString();
     }
